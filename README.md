@@ -1,7 +1,3 @@
-Practice task. Java EE, Servlets
-Opened: Wednesday, 14 December 2022, 12:00 PM
-Due: Saturday, 17 December 2022, 11:59 PM
-
 Using Servlet API, JSP, HTML and CSS create a simple Web Application for working with the To-Do List.
 
 Created Web Application should be able to:
