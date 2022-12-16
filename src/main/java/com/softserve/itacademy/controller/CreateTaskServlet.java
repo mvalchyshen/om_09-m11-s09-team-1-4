@@ -26,23 +26,27 @@ public class CreateTaskServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        doPostWithSendRedirect(request, response);
+        try {
+            doPostWithSendRedirect(request, response);
+        } catch (Exception e) {
+            response.sendRedirect("/error.jsp");
+        }
     }
+
     protected void doPostWithSendRedirect(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         addTask(request);
         response.sendRedirect("/tasks-list");
     }
-    private void addTask(HttpServletRequest request) {
+
+    private void addTask(HttpServletRequest request) throws IOException {
         String title = request.getParameter("title");
         Priority priority = Priority.valueOf(request.getParameter("priority"));
 
-        if (title.isBlank()){
-            request.setAttribute("errorMessage", "Please enter a valid item");
-            // todo redirect to error page
-        } else {
+        if (title.isBlank()) {
+            request.setAttribute("errorMessage", "Expected value in input field but it was empty!");
+        } else
             taskRepository.create(new Task(title, priority));
-        }
     }
 
 }

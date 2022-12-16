@@ -1,6 +1,7 @@
 <%@ page import="com.softserve.itacademy.model.Task" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>List of Tasks</title>
@@ -25,7 +26,7 @@
             </tbody>
             <c:forEach items="${tasks}" var="task">
                 <tr>
-                    <td>${task.i}</td>
+                    <td>${task.id}</td>
                     <td>${task.title}</td>
                     <td>${task.priority}</td>
                     <td><a class="btn btn-danger"
@@ -35,8 +36,10 @@
             </c:forEach>
         </table>
 
-        <a class="btn btn-success" href="/create-task"> Add </a>
+        <a type="submit" class="btn btn-success" href="/create-task">
+            <input type="submit" class="btn btn-success" value="Create"/> </a>
 
+        <input type="submit" class="btn btn-success" value="Clear"/>
     </div>
 
 </body>
