@@ -39,7 +39,7 @@
 
                 </a></td>
                 <td><a class="btn btn-danger"
-                       href="/deleteTask?itemName=${task.id}">delete
+                       href="/delete-task?id=${task.id}">delete
 
                 </a></td>
             </tr>
