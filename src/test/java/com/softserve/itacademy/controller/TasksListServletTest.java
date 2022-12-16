@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -100,7 +101,7 @@ public class TasksListServletTest {
     @Test
     public void testCorrectTasksRead() throws ServletException, IOException {
         when(request.getRequestDispatcher(anyString())).thenReturn(requestDispatcher);
-        when(taskRepository.all()).thenReturn(anyList());
+        when(taskRepository.all()).thenReturn(Collections.emptyList());
 
         tasksListServlet.doGet(request, response);
 

@@ -9,38 +9,37 @@
     <style>
         <%@include file="../styles/main.css"%>
     </style>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-    <%@include file="header.html"%>
+<%@include file="header.html" %>
 
-    <div class="container">
-        <p>You have the following tasks</p>
-        <table class="table table-striped">
-            <thead>
-            </thead>
-            <tbody>
-            <th>Id</th>
-            <th>Title</th>
-            <th>Priority</th>
-            </tbody>
-            <c:forEach items="${tasks}" var="task">
-                <tr>
-                    <td>${task.id}</td>
-                    <td>${task.title}</td>
-                    <td>${task.priority}</td>
-                    <td><a class="btn btn-danger"
-                           href="/deleteTask?itemName=${task.id}">Delete
-                    </a></td>
-                </tr>
-            </c:forEach>
-        </table>
+<div class="container">
+    <p>You have the following tasks</p>
+    <table class="table table-striped">
+        <thead>
+        </thead>
+        <tbody>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Priority</th>
+        <th></th>
+        </tbody>
+        <c:forEach items="${tasks}" var="task">
+            <tr>
+                <td>${task.id}</td>
+                <td>${task.title}</td>
+                <td>${task.priority}</td>
+                <td><a class="btn btn-danger"
+                       href="/deleteTask?itemName=${task.id}">Delete
+                </a></td>
+            </tr>
+        </c:forEach>
+    </table>
 
-        <a type="submit" class="btn btn-success" href="/create-task">
-            <input type="submit" class="btn btn-success" value="Create"/> </a>
-
-        <input type="submit" class="btn btn-success" value="Clear"/>
-    </div>
+    <a type="submit" class="btn btn-success" href="/create-task">Create</a>
+</div>
 
 </body>
 </html>
