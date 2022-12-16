@@ -18,6 +18,7 @@
 <% Error error = (Error) request.getAttribute("error");%>
 
 <h2> <%=error.getDescription()%></h2>
+<br><h4>url: <%=error.getUrl()%></h4>
 
 </body>
 </html>
