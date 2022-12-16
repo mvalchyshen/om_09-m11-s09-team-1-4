@@ -1,5 +1,6 @@
 package com.softserve.itacademy.controller;
 
+import com.softserve.itacademy.model.Error;
 import com.softserve.itacademy.model.Task;
 import com.softserve.itacademy.repository.TaskRepository;
 
@@ -29,6 +30,8 @@ public class DeleteTaskServlet extends HttpServlet {
          response.sendRedirect("/tasks-list");
         else{
             response.setStatus(404,"NOT FOUND");
+            Error error = new Error("Task with ID '"+id+"' not found in To-Do List!","/delete-task");
+            request.setAttribute("error",error);
             request.getRequestDispatcher("WEB-INF/pages/error.jsp").forward(request,response);
         }
 
