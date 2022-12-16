@@ -16,7 +16,7 @@
 <%@include file="header.html" %>
 
 <div class="container">
-    <p>You have the following tasks</p>
+    <p>List of Tasks</p>
     <table class="table table-striped">
         <thead>
         </thead>
@@ -24,6 +24,7 @@
         <th>Id</th>
         <th>Title</th>
         <th>Priority</th>
+        <th colspan="3">Operations</th>
         <th></th>
         </tbody>
         <c:forEach items="${tasks}" var="task">
@@ -32,10 +33,10 @@
                 <td>${task.title}</td>
                 <td>${task.priority}</td>
                 <td><a class="btn btn-success"
-                       href="/readTask?itemName=${task.id}">read
+                       href="/read-task?id=${task.id}">read
                 </a></td>
                 <td><a class="btn btn-success"
-                       href="/ubdateTask?itemName=${task.id}">update
+                       href="/edit-task?id=${task.id}">edit
 
                 </a></td>
                 <td><a class="btn btn-danger"
