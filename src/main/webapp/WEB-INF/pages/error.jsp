@@ -1,3 +1,4 @@
+<%@ page import="com.softserve.itacademy.model.Error" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -11,8 +12,11 @@
 
 </head>
 <body>
+<%@include file="header.html" %>
 
+<% Error error = (Error) request.getAttribute("error");%>
 
+<h2> <%=error.getDescription()%></h2>
 
 </body>
 </html>

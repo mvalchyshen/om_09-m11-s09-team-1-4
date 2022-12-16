@@ -10,9 +10,17 @@
 
 </head>
 <body>
-<table>
-    <%@include file="header.html"%>
-
+<%@include file="header.html" %>
+<h2>Read existing Task</h2>
+<%
+    Task task = (Task) request.getAttribute("task");
+%>
+Id: <strong><%=task.getId()%></strong>
+</p>
+<p>Title: <strong><%=task.getTitle()%></strong>
+</p>
+<p>Priority: <strong><%=task.getPriority()%></strong>
+</p>
 
 
 </body>
