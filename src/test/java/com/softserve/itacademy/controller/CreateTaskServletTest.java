@@ -151,5 +151,4 @@ public class CreateTaskServletTest {
 
         verify(taskRepository, times(1)).create(any(Task.class));
     }
-
 }

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 @WebServlet(value = {"/create-task"})
 public class CreateTaskServlet extends HttpServlet {
@@ -26,27 +28,24 @@ public class CreateTaskServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        try {
-            doPostWithSendRedirect(request, response);
-        } catch (Exception e) {
-            response.sendRedirect("/error.jsp");
-        }
+        doPostWithSendRedirect(request, response);
     }
 
     protected void doPostWithSendRedirect(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        addTask(request);
-        response.sendRedirect("/tasks-list");
-    }
-
-    private void addTask(HttpServletRequest request) throws IOException {
         String title = request.getParameter("title");
-        Priority priority = Priority.valueOf(request.getParameter("priority"));
-
         if (title.isBlank()) {
-            request.setAttribute("errorMessage", "Expected value in input field but it was empty!");
-        } else
-            taskRepository.create(new Task(title, priority));
+            request.setAttribute("message", "Expected value in input field but it was empty!");
+            doGet(request, response);
+        } else if (!addTask(request, title)) {
+            request.setAttribute("message", "Task with a given name already exists!");
+            doGet(request, response);
+        } else {
+            response.sendRedirect("/tasks-list");
+        }
     }
-
+    private boolean addTask(HttpServletRequest request, String title) throws IOException {
+        Priority priority = Priority.valueOf(request.getParameter("priority"));
+        return taskRepository.create(new Task(title, priority));
+    }
 }
