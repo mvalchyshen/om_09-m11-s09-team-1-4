@@ -31,14 +31,21 @@
                 <td>${task.id}</td>
                 <td>${task.title}</td>
                 <td>${task.priority}</td>
+                <td><a class="btn btn-success"
+                       href="/readTask?itemName=${task.id}">read
+                </a></td>
+                <td><a class="btn btn-success"
+                       href="/ubdateTask?itemName=${task.id}">update
+
+                </a></td>
                 <td><a class="btn btn-danger"
-                       href="/deleteTask?itemName=${task.id}">Delete
+                       href="/deleteTask?itemName=${task.id}">delete
+
                 </a></td>
             </tr>
         </c:forEach>
     </table>
 
-    <a type="submit" class="btn btn-success" href="/create-task">Create</a>
 </div>
 
 </body>

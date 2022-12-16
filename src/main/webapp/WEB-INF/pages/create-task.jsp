@@ -38,7 +38,7 @@
     </fieldset>
 
     <input type="submit" class="btn btn-success" value="Create"/>
-    <input type="reset" class="btn btn-clear" value="Clear" onclick="document.getElementById('myForm').reset();"/>
+    <input type="reset" class="btn btn-clear" value="Clear"/>
 </form>
 
 </body>
