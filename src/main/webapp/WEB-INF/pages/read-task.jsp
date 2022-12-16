@@ -31,7 +31,7 @@
         <th>Priority:</th>
         <th><strong><%=task.getPriority()%></strong></th>
     </tr>
-    
+
 </table>
 </body>
 </html>
