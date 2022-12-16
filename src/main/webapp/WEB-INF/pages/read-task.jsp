@@ -16,13 +16,22 @@
 <%
     Task task = (Task) request.getAttribute("task");
 %>
-Id: <strong><%=task.getId()%></strong>
-</p>
-<p>Title: <strong><%=task.getTitle()%></strong>
-</p>
-<p>Priority: <strong><%=task.getPriority()%></strong>
-</p>
 
+<table style="border:none;">
 
+    <tr>
+        <th>Id:</th>
+        <th><strong><%=task.getId()%></strong></th>
+    </tr>
+    <tr>
+        <th>Title:</th>
+        <th><strong><%=task.getTitle()%></strong></th>
+    </tr>
+    <tr>
+        <th>Priority:</th>
+        <th><strong><%=task.getPriority()%></strong></th>
+    </tr>
+    
+</table>
 </body>
 </html>
