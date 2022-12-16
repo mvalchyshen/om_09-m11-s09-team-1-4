@@ -16,7 +16,7 @@
 <%@include file="header.html" %>
 
 <div class="container">
-    <p>You have the following tasks</p>
+    <p>List of Tasks</p>
     <table class="table table-striped">
         <thead>
         </thead>
@@ -35,7 +35,7 @@
                        href="/readTask?itemName=${task.id}">read
                 </a></td>
                 <td><a class="btn btn-success"
-                       href="/ubdateTask?itemName=${task.id}">update
+                       href="/updateTask?itemName=${task.id}">update
 
                 </a></td>
                 <td><a class="btn btn-danger"
