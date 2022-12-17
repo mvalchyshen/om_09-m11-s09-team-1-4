@@ -26,8 +26,6 @@ public class UpdateTaskServlet extends HttpServlet {
         Task task = taskRepository.read(Integer.parseInt(request.getParameter("id")));
 
         if (task != null) {
-            response.setStatus(200);
-            response.addHeader("Content-Type","text/html;charset=UTF-8");
             request.setAttribute("task", task);
             request.getRequestDispatcher("/WEB-INF/pages/edit-task.jsp").forward(request, response);
         }else {
