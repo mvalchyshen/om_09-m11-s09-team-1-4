@@ -16,6 +16,7 @@ import java.io.IOException;
 public class UpdateTaskServlet extends HttpServlet {
 
     private TaskRepository taskRepository;
+    private Task task;
 
     @Override
     public void init() {
@@ -23,7 +24,8 @@ public class UpdateTaskServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Task task = taskRepository.read(Integer.parseInt(request.getParameter("id")));
+        if(task == null)
+            task = taskRepository.read(Integer.parseInt(request.getParameter("id")));
 
         if (task != null) {
             request.setAttribute("task", task);
@@ -39,8 +41,8 @@ public class UpdateTaskServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-        Task task = taskRepository.read(Integer.parseInt(request.getParameter("id")));
+        if(task == null)
+            task = taskRepository.read(Integer.parseInt(request.getParameter("id")));
         String title = request.getParameter("title");
         Priority priority = Priority.valueOf(request.getParameter("priority"));
 
