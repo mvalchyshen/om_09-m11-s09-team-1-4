@@ -26,6 +26,8 @@ public class UpdateTaskServlet extends HttpServlet {
         Task task = taskRepository.read(Integer.parseInt(request.getParameter("id")));
 
         if (task != null) {
+            response.setStatus(200);
+            response.addHeader("Content-Type","text/html;charset=UTF-8");
             request.setAttribute("task", task);
             request.getRequestDispatcher("/WEB-INF/pages/edit-task.jsp").forward(request, response);
         }else {
@@ -42,17 +44,25 @@ public class UpdateTaskServlet extends HttpServlet {
 
         Task task = taskRepository.read(Integer.parseInt(request.getParameter("id")));
         String title = request.getParameter("title");
-        task.setTitle(title);
-
         Priority priority = Priority.valueOf(request.getParameter("priority"));
-        task.setPriority(priority);
 
-         if (taskRepository.update(task)){
-             response.addHeader("Content-Type","text/html;charset=UTF-8");
-             response.sendRedirect("/tasks-list");
-         }else{
-             request.setAttribute("message", "Task with a given name already exists!");
-             doGet(request, response);
-         }
+        if (title.isBlank()) {
+            request.setAttribute("message", "Expected value in input field but it was empty!");
+            doGet(request, response);
+        }else if (task == null){
+            doGet(request,response);
+        }else if (updateTask(task, title, priority)){
+            response.addHeader("Content-Type","text/html;charset=UTF-8");
+            response.sendRedirect("/tasks-list");
+        }else{
+            request.setAttribute("message", "Task with a given name already exists!");
+            doGet(request, response);
+        }
+    }
+
+    private boolean updateTask(Task task, String newTitle, Priority newPriority){
+        task.setTitle(newTitle);
+        task.setPriority(newPriority);
+        return taskRepository.update(task);
     }
 }
